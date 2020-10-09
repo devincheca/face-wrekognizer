@@ -23,7 +23,7 @@
 
 ### API Token System
 
-The site provides a means of directing users to it and having them return after completing the process flow. The token returned from the initial API call is the same token you provide for the final API call to validate against the API that the face validation process was ran successfully.
+The site provides a means of directing users to it and having them return after completing the process flow. The token returned from the initial API call is the same token you provide for the final API call to validate against the API that the face validation process was conducted successfully.
 
 ##### Note: The tokens are for one time use so that they cannot be used to break the system with duplicate reads. If you need to run the process flow again, just get a fresh token.
 
