@@ -3,9 +3,9 @@
 ### Basic Usage for Demo Purposes
 
 `<iframe src="https://face-wrekognizer.name/" title="Face Wrekognizer"></iframe>`
-Apply css and styling around it however you see fit. The UI is responsive for mobile screens.
-The color theming uses Bulma.io's info, success, and danger color shades. 
-(#3298dc, #48c774, #f14668)
+>Apply css and styling around it however you see fit. The UI is responsive for mobile screens.
+>The color theming uses Bulma.io's info, success, and danger color shades. 
+>(#3298dc, #48c774, #f14668)
 
 ### An Actual Implementation
 
@@ -13,20 +13,23 @@ The color theming uses Bulma.io's info, success, and danger color shades.
 `<div id="faceWrekognizerDiv"></div>`
 
 #### JS
-`<script>
-  function initWrekognizer(token) {
-    const wrekDiv = document.getElementById('faceWrekognizerDiv');
-    const iframeElement = document.createElement('iframe');
-    iframeElement.src = 'https://face-wrekognizer.name?token=' + token;
-    iframeElement.title = 'Face Wrekognizer';
-    wrekDiv.appendChild(iframeElement);
-  }
-</script>`
-
+    function initWrekognizer(token) {
+      const wrekDiv = document.getElementById('faceWrekognizerDiv');
+      const iframeElement = document.createElement('iframe');
+      iframeElement.src = 'https://face-wrekognizer.name?token=' + token;
+      iframeElement.title = 'Face Wrekognizer';
+      wrekDiv.appendChild(iframeElement);
+    }
 
 ### API Token System
 
-The site provides a means of directing users to it and having them return after completing the process flow. The token returned from the initial API call is the same ticket you provide for the final API call to validate against the API that the face validation process was ran successfully.
+The site provides a means of directing users to it and having them return after completing the process flow. The token returned from the initial API call is the same token you provide for the final API call to validate against the API that the face validation process was ran successfully.
+
+##### Note: The tokens are for one time use so that they cannot be used to break the system with duplicate reads. If you need to run the process flow again, just get a fresh token.
+
+This is a public facing API with CORS enabled so feel free to implement the UI to match your site/process's look and feel. The image validation endpoint operates via a multipart/form-data HTML form upload.
+
+This is compliant with the PWA standard and is installable on devices with Chrome.
 
 You can use the [editor on GitHub](https://github.com/devincheca/face-wrekognizer/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
