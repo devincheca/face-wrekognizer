@@ -1,8 +1,32 @@
 ## Face Wrekognizer Developer Documentation
 
-### Basic Usage
+### Basic Usage for Demo Purposes
 
 `<iframe src="https://face-wrekognizer.name/" title="Face Wrekognizer"></iframe>`
+Apply css and styling around it however you see fit. The UI is responsive for mobile screens.
+The color theming uses Bulma.io's info, success, and danger color shades. 
+(#3298dc, #48c774, #f14668)
+
+### An Actual Implementation
+
+#### HTML
+`<div id="faceWrekognizerDiv"></div>`
+
+#### JS
+`<script>
+  function initWrekognizer(token) {
+    const wrekDiv = document.getElementById('faceWrekognizerDiv');
+    const iframeElement = document.createElement('iframe');
+    iframeElement.src = 'https://face-wrekognizer.name?token=' + token;
+    iframeElement.title = 'Face Wrekognizer';
+    wrekDiv.appendChild(iframeElement);
+  }
+</script>`
+
+
+### API Token System
+
+The site provides a means of directing users to it and having them return after completing the process flow. The token returned from the initial API call is the same ticket you provide for the final API call to validate against the API that the face validation process was ran successfully.
 
 You can use the [editor on GitHub](https://github.com/devincheca/face-wrekognizer/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
