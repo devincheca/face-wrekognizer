@@ -74,11 +74,13 @@ This is a public facing API with CORS enabled so feel free to implement the UI t
 
 
 #### HTML
-`<form action="https://face-wrekognizer.name/validate/sendImg" method="post" enctype="multipart/form-data" id="photoUploadForm" name="photoUploadForm">`
-`  <input hidden type="text" id="formToken" name="formToken" value="" />`
-`  <input type="file" accept="image/*" capture="user" id="faceInput" name="faceInput" />`
-`  <input type="file" accept="image/*" capture="environment" id="idInput" name="idInput" />`
-`</form>`
+```html
+<form action="https://face-wrekognizer.name/validate/sendImg" method="post" enctype="multipart/form-data" id="photoUploadForm" name="photoUploadForm">
+    <input hidden type="text" id="formToken" name="formToken" value="" />
+    <input type="file" accept="image/*" capture="user" id="faceInput" name="faceInput" />
+    <input type="file" accept="image/*" capture="environment" id="idInput" name="idInput" />
+</form>
+```
 
 This is compliant with the PWA standard and is installable on devices with Chrome.
 
