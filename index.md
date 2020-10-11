@@ -22,10 +22,11 @@ An open source, cross-platform, mobile-friendly online system like this.
 `<div id="faceWrekognizerDiv"></div>`
 
 #### JS
-    function initWrekognizer(token) {
+    var currentToken = tokenManager();
+    function initWrekognizer() {
       const wrekDiv = document.getElementById('faceWrekognizerDiv');
       const iframeElement = document.createElement('iframe');
-      iframeElement.src = 'https://face-wrekognizer.name?token=' + token;
+      iframeElement.src = 'https://face-wrekognizer.name?token=' + currentToken.getToken();
       iframeElement.title = 'Face Wrekognizer';
       wrekDiv.appendChild(iframeElement);
     }
@@ -33,12 +34,33 @@ An open source, cross-platform, mobile-friendly online system like this.
       const res = await fetch('https://face-wrekognizer.name/tokens/getToken', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(),
       });
       const json = await res.json();
-      initWrekognizer(json.token);
+      currentToken().setToken(json.token);
+      initWrekognizer();
     }
-    window.onload = getTokenAndStart();
+    function tokenManager() {
+      let token = null;
+      return function () {
+        return {
+          getToken: () => {
+            return token;
+          },
+          setToken: (newToken) => {
+            token = newToken;
+          },
+          checkToken: async () => {
+            const req = new Request();
+            req.data = { token };
+            req.endpoint = '/tokens/checkToken';
+            const res = await req.send();
+            const json = await res.json();
+            return json;
+          },
+        };
+      }
+    }
+    window.onload = getTokenAndStart;
 
 ### API Token System
 
