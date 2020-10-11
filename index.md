@@ -6,7 +6,8 @@ Validating IDs against a face is not a straight forward task when trying to cond
 
 ### The Solution
 
-An open source, cross-platform, mobile-friendly online solution like this.
+An open source, cross-platform, mobile-friendly online system like this.
+>https://face-wrekognizer.name/
 
 ### Basic Usage for Demo Purposes
 
@@ -28,6 +29,16 @@ An open source, cross-platform, mobile-friendly online solution like this.
       iframeElement.title = 'Face Wrekognizer';
       wrekDiv.appendChild(iframeElement);
     }
+    async getTokenAndStart() {
+      const res = await fetch('https://face-wrekognizer.name/tokens/getToken', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(),
+      });
+      const json = await res.json();
+      initWrekognizer(json.token);
+    }
+    window.onload = getTokenAndStart();
 
 ### API Token System
 
