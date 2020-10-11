@@ -72,6 +72,14 @@ The site provides a means of directing users to it and having them return after 
 
 This is a public facing API with CORS enabled so feel free to implement the UI to match your site/process's look and feel. The image validation endpoint operates via a multipart/form-data HTML form upload.
 
+
+#### HTML
+`<form action="https://face-wrekognizer.name/validate/sendImg" method="post" enctype="multipart/form-data" id="photoUploadForm" name="photoUploadForm">
+  <input hidden type="text" id="formToken" name="formToken" value="" />
+  <input type="file" accept="image/*" capture="user" id="faceInput" name="faceInput" />
+  <input type="file" accept="image/*" capture="environment" id="idInput" name="idInput" />
+</form>`
+
 This is compliant with the PWA standard and is installable on devices with Chrome.
 
 You can use the [editor on GitHub](https://github.com/devincheca/face-wrekognizer/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
