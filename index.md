@@ -1,5 +1,13 @@
 ## Face Wrekognizer Developer Documentation
 
+### The Problem
+
+Validating IDs against a face is not a straight forward task when trying to conduct this online for various processes like Know Your Customer, Airline Preflight Passport Validation, ID Validation for enrolling in benefits, etc.
+
+### The Solution
+
+An open source, cross-platform, mobile-friendly online solution like this.
+
 ### Basic Usage for Demo Purposes
 
 `<iframe src="https://face-wrekognizer.name/" title="Face Wrekognizer"></iframe>`
