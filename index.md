@@ -6,7 +6,7 @@ Validating IDs against a face is not a straight forward task when trying to cond
 
 ### The Solution
 
-An open source, cross-platform, mobile-friendly online system like this.
+An open source, cross-platform, mobile-friendly online system like this:
 >https://face-wrekognizer.name/
 
 ### Basic Usage for Demo Purposes
@@ -15,6 +15,9 @@ An open source, cross-platform, mobile-friendly online system like this.
 >Apply css and styling around it however you see fit. The UI is responsive for mobile screens.
 >The color theming uses Bulma.io's info, success, and danger color shades. 
 >(#3298dc, #48c774, #f14668)
+
+### Another Means of Using The System (just link to it and send your users there)
+`<a href="https://face-wrekognizer.name?token=theTokenYouGetGoesHereIfYouAreJustPrototypingOmitTheToken" target="_blank">Validate ID</a>`
 
 ### An Actual Implementation
 
