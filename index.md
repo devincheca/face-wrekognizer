@@ -50,10 +50,12 @@ An open source, cross-platform, mobile-friendly online system like this.
             token = newToken;
           },
           checkToken: async () => {
-            const req = new Request();
-            req.data = { token };
-            req.endpoint = '/tokens/checkToken';
-            const res = await req.send();
+            // note this is a one time read so tokens cannot be reused
+            const res = await fetch('https://face-wrekognizer.name/tokens/checkToken', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token }),
+            });
             const json = await res.json();
             return json;
           },
