@@ -1,0 +1,59 @@
+<html>
+  <head>
+  <title>
+    Sample Face Wrekognizer
+  </title>
+  <meta charset="utf-8"></meta>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+  <style>
+    #iframeBox {
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="faceWrekognizerDiv"></div>
+    <script>
+      var currentToken = tokenManager();
+      function initWrekognizer() {
+        const wrekDiv = document.getElementById('faceWrekognizerDiv');
+        const iframeElement = document.createElement('iframe');
+        iframeElement.src = 'https://face-wrekognizer.name?token=' + currentToken().getToken();
+        iframeElement.id = 'iframeBox';
+        iframeElement.title = 'Face Wrekognizer';
+        wrekDiv.appendChild(iframeElement);
+      }
+      async function getTokenAndStart() {
+        const res = await fetch('https://face-wrekognizer.name/tokens/getToken', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        const json = await res.json();
+        currentToken().setToken(json.token);
+        initWrekognizer();
+      }
+      function tokenManager() {
+        let token = null;
+        return function () {
+          return {
+            getToken: () => { return token; },
+            setToken: (newToken) => { token = newToken; },
+            checkToken: async () => {
+              // note this is a one time read so tokens cannot be reused
+              const res = await fetch('https://face-wrekognizer.name/tokens/checkToken', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token }),
+              });
+              const json = await res.json();
+              return json;
+            },
+          };
+        }
+      }
+      window.onload = getTokenAndStart;
+    </script>
+  </body>
+  </html>
+
