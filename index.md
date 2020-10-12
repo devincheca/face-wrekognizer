@@ -88,6 +88,5 @@ This is compliant with the PWA standard and is installable on devices with Chrom
 
 ### A Server Side Implementation with AWS
 
-Make sure to have the correct access permissions set in place to do this. You will need S3, and Rekognition. I did this through Hapi with nodejs but any server side stack should be able to handle this logic. If your application calls for more tailored backend processing, then the code below is a good start.
-
+Make sure to have the correct access permissions set in place to do this. You will need S3 and Rekognition. I did this through Hapi with nodejs but any server side stack should be able to handle this logic. If your application calls for more tailored backend processing, then the code below is a good start.
 >https://github.com/devincheca/face-wrekognizer/blob/main/serverSample.js
