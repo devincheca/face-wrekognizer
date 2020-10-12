@@ -6,6 +6,10 @@
   <meta charset="utf-8"></meta>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
   <style>
+    #iframeBox {
+      height: 100%;
+      width: 100%;
+    }
   </style>
   </head>
   <body>
@@ -16,6 +20,7 @@
         const wrekDiv = document.getElementById('faceWrekognizerDiv');
         const iframeElement = document.createElement('iframe');
         iframeElement.src = 'https://face-wrekognizer.name?token=' + currentToken().getToken();
+        iframeElement.id = 'iframeBox';
         iframeElement.title = 'Face Wrekognizer';
         wrekDiv.appendChild(iframeElement);
       }
