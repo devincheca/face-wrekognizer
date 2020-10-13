@@ -27,6 +27,10 @@ You can refer to the code snippets below or take a look at the sample index.html
 #### HTML
 `<div id="faceWrekognizerDiv"></div>`
 
+#### Include a Script Tag or Interface with the API Yourself
+
+`<script src="https://quizzical-hypatia-917799.netlify.app/includeThis.js"></script>`
+
 #### JS
     var currentToken = tokenManager();
     function initWrekognizer() {
