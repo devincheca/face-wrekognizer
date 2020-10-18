@@ -6,7 +6,7 @@ Validating IDs against a face is not a straight forward task when trying to cond
 
 ### The Solution
 
-An open source, cross-platform, mobile-friendly online system like this:
+An open source, cross-platform online system like this:
 >https://face-wrekognizer.name/
 
 ### Basic Usage for Demo Purposes
