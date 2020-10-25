@@ -22,7 +22,7 @@ An open source, cross-platform online system like this:
 ### An Actual Implementation
 
 You can refer to the code snippets below or take a look at the sample index.html file here:
->https://github.com/devincheca/face-wrekognizer/blob/main/index.html
+>https://github.com/devincheca/face-wrekognizer/blob/main/sampleRekognizer.html
 
 #### HTML
 `<div id="faceWrekognizerDiv"></div>`
