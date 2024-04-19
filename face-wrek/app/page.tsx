@@ -3,21 +3,15 @@ import Image from "next/image";
 // Components
 import Disclaimer from "./(Disclaimer)/Disclaimer";
 import NavBar from "./(NavBar)/NavBar";
-import { useState } from "react";
 
 export default function Home() {
-  const [isAgreed, setIsAgreed] = useState(false);
-
-  // use state is a client component thing that I need to figure out
-  const openViewDemo = () => console.log('openViewDemo');
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-36">
       <div className="text-left w-screen">
         <NavBar />
       </div>
-      <div className="relative z-[-1] flex place-items-center">
-        <Disclaimer isAgreed onAgree={() => setIsAgreed(true)} onViewDemo={() => openViewDemo()}/>
+      <div className="flex place-items-center">
+        <Disclaimer />
       </div>
 
 {/*

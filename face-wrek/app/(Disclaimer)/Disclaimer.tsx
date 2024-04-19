@@ -1,5 +1,11 @@
-export default function Disclaimer(props: { isAgreed: boolean, onAgree: () => void, onViewDemo: () => void }) {
-  const { isAgreed, onAgree, onViewDemo } = props;
+"use client";
+
+import { useState } from "react";
+
+export default function Disclaimer() {
+  const [isAgreed, setIsAgreed] = useState(false);
+
+  const onAgree = () => setIsAgreed(true);
 
   return (
     <div>
@@ -14,8 +20,13 @@ export default function Disclaimer(props: { isAgreed: boolean, onAgree: () => vo
           <p className="text-right py-2">Copyright 2024 faceWrekognizer</p>
         </div>
         <div className="text-center">
-          { !isAgreed && <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" onClick={onAgree}>Agree</button> }
-          { isAgreed && <button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded" onClick={onViewDemo}>View Demo</button> }
+          { !isAgreed && <button className="bg-blue-500 hover:bg-blue-700" onClick={() => onAgree()}>Agree</button> }
+          { isAgreed && <>
+              <a href="/upload">
+                <button className="bg-blue-500 hover:bg-blue-700">View Demo</button>
+              </a>
+            </>
+          }
         </div>
       </div>
     </div>

@@ -33,3 +33,18 @@ body {
     text-wrap: balance;
   }
 }
+
+button {
+  font-weight: bold;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  border-radius: 1em;
+  background-color: blue;
+  color: white;
+}
+
+button:hover {
+  background-color: darkblue;
+}
