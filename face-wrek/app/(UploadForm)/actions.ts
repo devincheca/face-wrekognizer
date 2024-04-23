@@ -1,0 +1,12 @@
+export const ACTIONS = {
+  FACE_IMAGE_SELECTED: 'FACE_IMAGE_SELECTED',
+  DOCUMENT_IMAGE_SELECTED: 'DOCUMENT_IMAGE_SELECTED',
+  UPLOAD_START: 'UPLOAD_START',
+  UPLOAD_FACE: 'UPLOAD_FACE',
+  UPLOAD_DOC: 'UPLOAD_DOC',
+};
+
+export type action = {
+  type: string,
+  event?: any,
+};
