@@ -14,13 +14,15 @@ export default function reducer(state: IState, action: action) {
       state = { ...state, documentInput: action.event };
       break;
     case ACTIONS.UPLOAD_START:
-      const verificationId = uuidv4();
+      if (!state.verificationId) {
+        const verificationId = uuidv4();
 
-      state = {
-        ...state,
-        isLoading: true,
-        verificationId,
-      };
+        state = {
+          ...state,
+          isLoading: true,
+          verificationId,
+        };
+      }
       break;
   }
 

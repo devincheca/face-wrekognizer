@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef } from "react";
 
 import { ACTIONS } from "./actions";
 import reducer from "./reducer";
@@ -9,6 +9,8 @@ import Service from "./service";
 
 export default function UploadForm() {
   const [state, dispatch] = useReducer(reducer, defaultState);
+  const faceInput = useRef(null);
+  const docInput = useRef(null);
 
   const onFaceSelect = (event: any) => dispatch({ type: ACTIONS.FACE_IMAGE_SELECTED, event });
 
@@ -22,14 +24,14 @@ export default function UploadForm() {
     if (!verificationId) return;
 
     const uploadService = new Service();
-
-    Promise.all([
-      uploadService.getFaceUploadUrl(verificationId),
-      uploadService.getDocumentUploadUrl(verificationId),
-    ])
-      .then((...args) => console.log('args: ', args))
-      .catch(console.error);
+    uploadService.id = verificationId;
+    uploadService.dispatch = dispatch;
+    uploadService.faceInput = faceInput && faceInput.current;
+    uploadService.docInput = docInput && docInput.current;
+    uploadService.uploadAndVerify();
   }, [state.verificationId])
+
+  const { isLoading } = state;
 
   return (
     <>
@@ -37,14 +39,14 @@ export default function UploadForm() {
         <div className="flex flex-col h-96 py-5">
           <div className="flex py-5 m-auto">
             <label className="px-5">Photo of your face: </label>
-            <input type="file" id="faceInput" name="faceInput" onChange={onFaceSelect}></input>
+            <input ref={faceInput} type="file" id="faceInput" name="faceInput" onChange={onFaceSelect}></input>
           </div>
           <div className="flex py-5 m-auto">
             <label className="px-5">Photo of your ID Card / Passport Document:</label>
-            <input type="file" id="faceInput" name="faceInput" onChange={onDocumentSelect}></input>
+            <input ref={docInput} type="file" id="faceInput" name="faceInput" onChange={onDocumentSelect}></input>
           </div>
           <div className="flex m-auto">
-            <button className="bg-blue-500 hover:bg-blue-700" onClick={upload}>Verify</button>
+            <button className="bg-blue-500 hover:bg-blue-700" disabled={isLoading} onClick={upload}>Verify</button>
           </div>
         </div>
       </div>
