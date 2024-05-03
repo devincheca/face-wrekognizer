@@ -9,7 +9,7 @@ export default function Disclaimer() {
 
   return (
     <div>
-      <div className="legalese notification">
+      <div className="legalese notification p-10">
         <h1 className="text-center">Welcome to the Face Wrekognizer ID Validation System</h1>
         <div className="textBody">
           <p className="py-2">Upon agreeing to the following terms you will be prompted for a current portrait photo or ("selfie") and a current photo of a form of identification. Once this process is complete and you receive a green light, you may close this tab, and return to the original site that directed you here.</p>

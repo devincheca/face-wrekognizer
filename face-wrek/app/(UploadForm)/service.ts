@@ -1,8 +1,9 @@
+import { ACTIONS } from "./actions";
 import { LAMBDA, LAMBDA_POST_ACTIONS } from "../constants";
 
 export default class Service {
   id: string | null = null;
-  dispatch: (arg: any) => any = () => null;
+  onComplete: (arg: any) => void = () => {};
   faceUrl: string = '';
   documentUrl: string = '';
   faceInput: HTMLInputElement | null = null;
@@ -87,26 +88,29 @@ export default class Service {
   private async validateId() {
     const response = await fetch(`${LAMBDA.UPLOAD}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Origin': 'http://localhost:3000',
-      },
+      headers: this.getHeaders(),
       body: JSON.stringify({
         Action: LAMBDA_POST_ACTIONS.VALIDATE_ID,
         Id: this.id,
       }),
     });
 
-    return response.json();
+    const validation = await response.json();
+    const isSuccess = validation.FaceMatches && validation.FaceMatches
+      .reduce((acc: boolean, { Similarity }: any) => {
+        return acc
+          ? true
+          : Similarity > 95;
+      }, false);
+    const isError = validation.$metadata && validation.$metadata.httpStatusCode !== 200;
+
+    this.onComplete({ validation, isSuccess, isError });
   }
 
   private async getUrl(ObjectNamePrefix: string) {
     const response = await fetch(`${LAMBDA.UPLOAD}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Origin': 'http://localhost:3000',
-      },
+      headers: this.getHeaders(),
       body: JSON.stringify({
         Action: LAMBDA_POST_ACTIONS.GET_URL,
         ObjectNamePrefix,
@@ -123,5 +127,12 @@ export default class Service {
 
   async getDocumentUploadUrl() {
     return this.getUrl('rek-doc');
+  }
+
+  private getHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      'Origin': 'http://localhost:3000',
+    };
   }
 }

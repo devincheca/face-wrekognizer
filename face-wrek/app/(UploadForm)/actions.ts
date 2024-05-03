@@ -4,9 +4,13 @@ export const ACTIONS = {
   UPLOAD_START: 'UPLOAD_START',
   UPLOAD_FACE: 'UPLOAD_FACE',
   UPLOAD_DOC: 'UPLOAD_DOC',
+  VERIFICATION_COMPLETE: 'VERIFICATION_COMPLETE',
+  VERIFICATION_SUCCESS: 'VERIFICATION_SUCCESS',
+  VERIFICATION_ERROR: 'VERIFICATION_ERROR',
 };
 
 export type action = {
   type: string,
   event?: any,
+  validation?: any,
 };

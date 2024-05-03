@@ -10,9 +10,11 @@ export default function reducer(state: IState, action: action) {
     case ACTIONS.FACE_IMAGE_SELECTED:
       state = { ...state, faceInput: action.event };
       break;
+
     case ACTIONS.DOCUMENT_IMAGE_SELECTED:
       state = { ...state, documentInput: action.event };
       break;
+
     case ACTIONS.UPLOAD_START:
       if (!state.verificationId) {
         const verificationId = uuidv4();
@@ -22,6 +24,28 @@ export default function reducer(state: IState, action: action) {
           isLoading: true,
           verificationId,
         };
+      }
+      break;
+
+    case ACTIONS.VERIFICATION_COMPLETE:
+      state = {
+        ...state,
+        isLoading: false,
+      };
+      break;
+
+    case ACTIONS.VERIFICATION_SUCCESS:
+      state = {
+        ...state,
+        isSuccess: true,
+      }
+      break;
+
+    case ACTIONS.VERIFICATION_ERROR:
+      state = {
+        ...state,
+        isLoading: false,
+        verificationId: '',
       }
       break;
   }
