@@ -4,4 +4,5 @@ export const LAMBDA = {
 
 export const LAMBDA_POST_ACTIONS = {
   GET_URL: 'GET_URL',
+  VALIDATE_ID: 'VALIDATE_ID',
 };
