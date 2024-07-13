@@ -45,11 +45,15 @@ export default function UploadForm() {
         <div className="flex flex-col h-96 py-5">
           <div className="flex py-5 m-auto">
             <label className="px-5">Photo of your face: </label>
-            <input ref={faceInput} type="file" id="faceInput" name="faceInput" disabled={isLoading} onChange={onFaceSelect}></input>
+            <div>
+              <input ref={faceInput} type="file" id="faceInput" name="faceInput" disabled={isLoading} onChange={onFaceSelect}></input>
+            </div>
           </div>
           <div className="flex py-5 m-auto">
             <label className="px-5">Photo of your ID Card / Passport Document:</label>
-            <input ref={docInput} type="file" id="faceInput" name="faceInput" disabled={isLoading} onChange={onDocumentSelect}></input>
+            <div>
+              <input ref={docInput} type="file" id="faceInput" name="faceInput" disabled={isLoading} onChange={onDocumentSelect}></input>
+            </div>
           </div>
           <div className="flex m-auto">
             { !isLoading && !isSuccess && <button className="bg-blue-500 hover:bg-blue-700" onClick={upload}>Verify</button> }
