@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useReducer, useRef } from "react";
+import { useReducer, useRef } from "react";
 
 import { ACTIONS } from "./actions";
 import reducer from "./reducer";
 import { defaultState } from "./state";
-import Service from "./service";
 import LoadingButton from "../(common)/components/LoadingButton";
+import { useUploadAndVerify } from "./effects";
 
 export default function UploadForm() {
   const [state, dispatch] = useReducer(reducer, defaultState);
@@ -19,23 +19,14 @@ export default function UploadForm() {
 
   const upload = () => dispatch({ type: ACTIONS.UPLOAD_START });
 
-  useEffect(() => {
-    const { verificationId } = state;
+  const { verificationId } = state;
 
-    if (!verificationId) return;
-
-    const uploadService = new Service();
-    uploadService.id = verificationId;
-    uploadService.faceInput = faceInput && faceInput.current;
-    uploadService.docInput = docInput && docInput.current;
-    uploadService.onComplete = ({ verification, isSuccess, isError }: any) => {
-      dispatch({ type: isError ? ACTIONS.VERIFICATION_ERROR : ACTIONS.VERIFICATION_COMPLETE });
-
-      if (isSuccess) dispatch({ type: ACTIONS.VERIFICATION_SUCCESS });
-    };
-
-    uploadService.uploadAndVerify();
-  }, [state.verificationId])
+  useUploadAndVerify({
+    verificationId,
+    faceInput,
+    docInput,
+    dispatch,
+  });
 
   const { isLoading, isSuccess } = state;
 
